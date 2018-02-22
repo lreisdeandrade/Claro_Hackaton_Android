@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 26
@@ -6,7 +6,6 @@ android {
 
 
     defaultConfig {
-        applicationId "br.com.claro.hackaton.nfcservice"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1

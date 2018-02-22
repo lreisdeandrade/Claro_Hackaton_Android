@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="azulNet">#00A4EC</color>
+    <color name="azulTextClaro">#8fd5f4</color>
+
+
 </resources>
