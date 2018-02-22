@@ -18,7 +18,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this)
-        toast(NFCUtil.retrieveNFCMessage(this.intent))
+        val nfcMessage = NFCUtil.retrieveNFCMessage(this.intent)
+        val splitedMessage = splitString(nfcMessage)
+
+        if (splitedMessage.size == 4) {
+            val cpf = splitedMessage.get(0)
+            val contrato = splitedMessage.get(1)
+            val macAddress = splitedMessage.get(2)
+            val enderecavel = splitedMessage.get(3)
+
+            toast(enderecavel);
+
+        }
+    }
+
+    fun splitString(nfcMessage: String): List<String> {
+
+        val splitMessage = nfcMessage.split("|")
+
+        return splitMessage
+
     }
 
     override fun onResume() {

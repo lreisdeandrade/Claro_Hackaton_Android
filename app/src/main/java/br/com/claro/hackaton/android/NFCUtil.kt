@@ -39,7 +39,6 @@ object NFCUtil {
                         it?.payload.let {
                             it?.let {
                                 return String(it)
-
                             }
                         }
                     }
@@ -51,7 +50,6 @@ object NFCUtil {
         }
         return "Touch NFC tag to read data"
     }
-
 
     private fun getNDefMessages(intent: Intent): Array<NdefMessage> {
 
