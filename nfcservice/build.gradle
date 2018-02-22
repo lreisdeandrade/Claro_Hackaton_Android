@@ -1,17 +1,23 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+}
+
 
 android {
     compileSdkVersion 26
 
-
-
     defaultConfig {
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -22,9 +28,13 @@ android {
         }
     }
 
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'scala-asm.properties'
     }
 }
 
@@ -34,19 +44,30 @@ ext {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
 
     //Retrofit
-    compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
-    compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
-    //Ok Http
-    compile "com.squareup.okhttp3:logging-interceptor:3.9.0"
-    //JodaTime
-    compile 'net.danlew:android.joda:2.9.5'
-    //Timezone
-    compile 'com.jakewharton.threetenabp:threetenabp:1.0.5'
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
 
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //Ok Http
+    implementation "com.squareup.okhttp3:logging-interceptor:3.8.1"
+
+    //RX
+    implementation "io.reactivex.rxjava2:rxjava:2.1.7"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    //Timber
+    implementation "com.jakewharton.timber:timber:$rootProject.ext.timber_version"
+
+    // JodaTime
+    implementation 'net.danlew:android.joda:2.9.5'
+
+    //Timezone
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.0.5'
+
+    //MultiDex
+    implementation 'com.android.support:multidex:1.0.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
