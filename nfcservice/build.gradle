@@ -36,6 +36,10 @@ android {
         exclude 'META-INF/NOTICE.txt'
         exclude 'scala-asm.properties'
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 }
 
 ext {
@@ -46,10 +50,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
 
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    
+    compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    //Ok Http
+    compile "com.squareup.okhttp3:logging-interceptor:3.9.0"
 
     //Ok Http
     implementation "com.squareup.okhttp3:logging-interceptor:3.8.1"
