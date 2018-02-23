@@ -1,4 +1,4 @@
-package br.com.claro.hackaton.nfcservice.model;
+package br.com.claro.hackaton.nfcservice;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -6,6 +6,9 @@ import com.google.gson.GsonBuilder;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.TimeUnit;
+
+import br.com.claro.hackaton.nfcservice.model.LoggingInterceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -21,6 +24,11 @@ public class NfcApiModule {
 
     public static void setRetrofit(@Nullable LoggingInterceptor.LogLevel logLevel) {
 
+        final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .readTimeout(60, TimeUnit.SECONDS)
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .build();
+
         LoggingInterceptor interceptor = new LoggingInterceptor(logLevel);
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addInterceptor(interceptor);
@@ -30,10 +38,12 @@ public class NfcApiModule {
 //                    .addHeader("Authorization", String.format("Bearer %s", API_KEY)).build();
 //            return chain.proceed(request);
 //        });
+
+
         OkHttpClient okClient = builder.build();
         retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
-                .client(okClient)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(getDefaultGsonBuilder()))
                 .build();
     }

@@ -39,6 +39,9 @@
                     android:scheme="vnd.android.nfc" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ResponseTvActivity_"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

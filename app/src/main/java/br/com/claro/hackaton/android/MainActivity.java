@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import br.com.claro.hackaton.nfcservice.NfcTvApi;
-import br.com.claro.hackaton.nfcservice.model.DiagnosticResponse;
+import br.com.claro.hackaton.nfcservice.model.DiagnosticoResponse;
 import retrofit2.Call;
 import retrofit2.Response;
 import timber.log.Timber;
@@ -91,20 +91,30 @@ public class MainActivity extends AppCompatActivity {
         HashMap<String, String> map = new HashMap<>();
 
         map.put("enderecavel", enderecavel);
-        NfcTvApi.getInstance().getDiagnostic(map).enqueue(new retrofit2.Callback<DiagnosticResponse>() {
+        NfcTvApi.getInstance().getDiagnostic(map).enqueue(new retrofit2.Callback<DiagnosticoResponse>() {
             @Override
-            public void onResponse(@NonNull Call<DiagnosticResponse> call, @NonNull Response<DiagnosticResponse> response) {
+            public void onResponse(@NonNull Call<DiagnosticoResponse> call, @NonNull Response<DiagnosticoResponse> response) {
                 if (response.isSuccessful() && response.body() != null)
-                    Timber.d("Diagnostic %s", response.body().toString());
+                    callactivity();
+                    Timber.d("Diagnostico %s", response.body().toString());
             }
 
             @Override
-            public void onFailure(Call<DiagnosticResponse> call, Throwable t) {
+            public void onFailure(Call<DiagnosticoResponse> call, Throwable t) {
+                Timber.d("Diagnostico error %s", t.toString());
 
             }
         });
     }
+
+    private void callactivity() {
+        Intent myIntent = new Intent(MainActivity.this, ResponseTvActivity_.class);
+        myIntent.putExtra("key", "teste"); //Optional parameters
+        MainActivity.this.startActivity(myIntent);
+    }
 }
+
+
 
 //    private var mNfcAdapter: NfcAdapter? = null
 //

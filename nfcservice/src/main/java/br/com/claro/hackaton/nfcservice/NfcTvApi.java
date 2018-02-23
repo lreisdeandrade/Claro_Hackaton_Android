@@ -2,8 +2,7 @@ package br.com.claro.hackaton.nfcservice;
 
 import java.util.HashMap;
 
-import br.com.claro.hackaton.nfcservice.model.DiagnosticResponse;
-import br.com.claro.hackaton.nfcservice.model.NfcApiModule;
+import br.com.claro.hackaton.nfcservice.model.DiagnosticoResponse;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 
@@ -28,7 +27,7 @@ public class NfcTvApi implements NfcTvDataSource {
     }
 
     @Override
-    public Call<DiagnosticResponse> getDiagnostic(HashMap<String, String> decoderInfo) {
+    public Call<DiagnosticoResponse> getDiagnostic(HashMap<String, String> decoderInfo) {
         return nfcService.getDiagnostic(decoderInfo);
     }
 

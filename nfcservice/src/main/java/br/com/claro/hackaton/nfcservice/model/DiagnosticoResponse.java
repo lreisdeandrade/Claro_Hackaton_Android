@@ -7,14 +7,14 @@ import com.google.gson.annotations.SerializedName;
  * Created by Leandro on 22/02/2018.
  */
 
-public class DiagnosticResponse {
+public class DiagnosticoResponse {
 
     @SerializedName("code")
     @Expose
     private Integer code;
     @SerializedName("body")
     @Expose
-    private Diagnostic diagnostic;
+    private Diagnostico body;
 
     public Integer getCode() {
         return code;
@@ -24,12 +24,19 @@ public class DiagnosticResponse {
         this.code = code;
     }
 
-    public Diagnostic getBody() {
-        return diagnostic;
+    public Diagnostico getBody() {
+        return body;
     }
 
-    public void setBody(Diagnostic body) {
-        this.diagnostic = body;
+    public void setBody(Diagnostico body) {
+        this.body = body;
     }
 
+    @Override
+    public String toString() {
+        return "DiagnosticoResponse{" +
+                "code=" + code +
+                ", body=" + body +
+                '}';
+    }
 }

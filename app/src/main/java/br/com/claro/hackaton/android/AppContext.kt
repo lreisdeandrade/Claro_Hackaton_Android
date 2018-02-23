@@ -2,7 +2,7 @@ package br.com.claro.hackaton.android
 
 import android.app.Application
 import br.com.claro.hackaton.nfcservice.model.LoggingInterceptor
-import br.com.claro.hackaton.nfcservice.model.NfcApiModule
+import br.com.claro.hackaton.nfcservice.NfcApiModule
 import com.jakewharton.threetenabp.AndroidThreeTen
 import timber.log.Timber
 

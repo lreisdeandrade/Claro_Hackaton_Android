@@ -7,20 +7,20 @@ import com.google.gson.annotations.SerializedName;
  * Created by Leandro on 22/02/2018.
  */
 
-public class Diagnostic {
+public class Diagnostico {
 
     @SerializedName("codigo")
     @Expose
-    private String codigo;
+    private Integer codigo;
     @SerializedName("descricao")
     @Expose
     private String descricao;
 
-    public String getCodigo() {
+    public Integer getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo) {
+    public void setCodigo(Integer codigo) {
         this.codigo = codigo;
     }
 
@@ -34,8 +34,8 @@ public class Diagnostic {
 
     @Override
     public String toString() {
-        return "Diagnostic{" +
-                "codigo='" + codigo + '\'' +
+        return "Diagnostico{" +
+                "codigo=" + codigo +
                 ", descricao='" + descricao + '\'' +
                 '}';
     }
