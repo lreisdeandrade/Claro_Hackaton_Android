@@ -4,51 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/base"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f1f1f1">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/region_card_view"
+
+    <RelativeLayout
+        android:id="@+id/rl_signal_status"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp">
+
+        <ImageView
+            android:id="@+id/signal_status_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true" />
+
+
+        <TextView
+            android:id="@+id/status_tv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/signal_status_img"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/signal_status_img"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/status_tv_sub_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/status_tv_label"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/signal_status_img"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/cinzaSubTitulo"
+            android:textSize="14sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_card_reforco_signal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        card_view:cardElevation="1sp"
-        card_view:cardUseCompatPadding="true">
+        android:layout_below="@id/rl_signal_status">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            card_view:cardCornerRadius="2dp"
+            card_view:contentPadding="10dp">
 
-            <ImageView
-                android:id="@+id/ic_location"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="16sp"
-                android:src="@drawable/ic_signal" />
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/ln_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toRightOf="@+id/ic_location"
-                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/reforco_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_signal" />
+
 
                 <TextView
                     android:id="@+id/reforco_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@id/reforco_img"
                     android:fontFamily="sans-serif-medium"
-                    android:maxLines="2"
                     android:text="Enviando reforço de sinal"
                     android:textColor="@android:color/black"
                     android:textSize="16sp" />
@@ -57,25 +94,49 @@
                     android:id="@+id/reforco_sub_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
-                    android:maxLines="2"
-                    android:text="Não desligue o aparelho"
-                    android:textColor="@color/cinza"
-                    android:textSize="13sp" />
+                    android:layout_below="@id/reforco_label"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@id/reforco_img"
+                    android:text="Não desligar o aparelho"
+                    android:textColor="@color/cinzaSubTitulo"
+                    android:textSize="14sp" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/ic_arrow_indicator"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:layout_marginRight="16dp"
-                android:layout_weight="0.17" />
+                android:layout_alignEnd="@id/reforco_img"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="100dp">
 
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
 
+                <TextView
+                    android:id="@+id/percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="14dp"
+                    android:layout_marginStart="20dp"
+                    android:text="60%"
+                    android:textColor="@color/cinza"
+                    android:textSize="14sp" />
+
+
+                <ProgressBar
+                    android:id="@+id/progress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/percent"
+                    android:layout_marginEnd="14dp"
+                    android:max="100"
+                    android:progress="45" />
+            </RelativeLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
 </RelativeLayout>

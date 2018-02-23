@@ -3,11 +3,13 @@ package br.com.claro.hackaton.nfcservice.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Leandro on 22/02/2018.
  */
 
-public class Diagnostico {
+public class Diagnostico  implements Serializable {
 
     @SerializedName("codigo")
     @Expose

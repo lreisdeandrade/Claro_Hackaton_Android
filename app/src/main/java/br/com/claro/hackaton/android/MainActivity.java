@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,8 +39,18 @@ public class MainActivity extends AppCompatActivity {
     private String macAddress;
     private String enderecavel;
 
+    @ViewById
+    ImageView imgSignalConsulting;
+
+
     @AfterViews
     protected void onCreate() {
+        Glide
+                .with(this) // replace with 'this' if it's in activity
+                .load("http://wembleycarvalho.com/hackathon2018/consultando_tv.gif")
+                .asGif()
+                .into(imgSignalConsulting);
+
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
         String nfcMessage = NFCUtil.INSTANCE.retrieveNFCMessage(this.getIntent());
@@ -52,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
 
             Timber.d("Executing diagnostic");
             getDiagnosticTv();
+
+
 //
         }
     }
@@ -95,8 +111,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<DiagnosticoResponse> call, @NonNull Response<DiagnosticoResponse> response) {
                 if (response.isSuccessful() && response.body() != null)
-                    callactivity();
-                    Timber.d("Diagnostico %s", response.body().toString());
+                    callactivity(response.body());
+                Timber.d("Diagnostico %s", response.body().toString());
             }
 
             @Override
@@ -107,13 +123,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void callactivity() {
+    private void callactivity(DiagnosticoResponse body) {
         Intent myIntent = new Intent(MainActivity.this, ResponseTvActivity_.class);
-        myIntent.putExtra("key", "teste"); //Optional parameters
+        myIntent.putExtra("diagnostic", body); //Optional parameters
         MainActivity.this.startActivity(myIntent);
     }
 }
-
 
 
 //    private var mNfcAdapter: NfcAdapter? = null

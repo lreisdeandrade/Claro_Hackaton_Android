@@ -2,6 +2,11 @@
     <string name="app_name">Claro_Hackaton_Android</string>
     <string name="consultando_seu_sinal_de_tv">Consultando seu sinal de TV</string>
 
+    <string name="tv_status_label_error">Foi identificado uma falha de sinal</string>
+    <string name="tv_status_sub_label_error">Não se preocupe, já estamos reparando</string>
+
+    <string name="tv_status_label_ok">Sinal OK</string>
+    <string name="tv_status_sub_label_ok"> Não identificamos falha no sinal de TV</string>
 
 
     <integer name="anim_duration_very_long">1500</integer>

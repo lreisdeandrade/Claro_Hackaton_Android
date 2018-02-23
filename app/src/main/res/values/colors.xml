@@ -7,7 +7,8 @@
     <color name="azulNet">#00A4EC</color>
     <color name="azulTextClaro">#8fd5f4</color>
 
-    <color name="cinza">#c3c3c3</color>
+    <color name="cinza">#DCDCDC</color>
+    <color name="cinzaSubTitulo">#787878</color>
 
 
 </resources>
